@@ -1,0 +1,10 @@
+easy_admin:
+    entities:
+        Article:
+            class: App\Entity\Article
+            list:
+                fields:
+                    - { property: 'title' }
+                    - { property: 'content' }
+                    - { property: 'status' }
+                    - { property: 'category' }

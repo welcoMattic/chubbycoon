@@ -1,0 +1,7 @@
+easy_admin:
+    design:
+        menu:
+            - label: 'Manager'
+            - { entity: 'Article', icon: 'newspaper-o', label: 'Articles' }
+            - { entity: 'Category', icon: 'th-list', label: 'Categories' }
+            - label: 'Env: %env(APP_ENV)%'

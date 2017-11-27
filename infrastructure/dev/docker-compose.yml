@@ -1,0 +1,48 @@
+version: '3'
+
+volumes:
+    database_data: {}
+
+services:
+    base-php:
+        build:
+            context: './services/php-base'
+            args:
+                CHUBBYCOON_UID: ${CHUBBYCOON_UID}
+        image: chubbycoon_basephp
+        command: echo 'Base php container'
+
+    mail:
+        build: ./services/mail
+
+    frontend:
+        build: ./services/frontend
+        depends_on:
+            - base-php
+        volumes:
+            - ../../:/var/www
+        links:
+            - database
+            - mail
+        ports:
+            - "80:80"
+
+    database:
+        build: ./services/database
+        env_file: ../../.env
+        environment:
+            MYSQL_ROOT_PASSWORD: 'chubbycoon'
+        ports:
+            - "3306:3306"
+        volumes:
+            - database_data:/var/lib/mysql
+
+    builder:
+        build: ./services/builder
+        depends_on:
+            - base-php
+        volumes:
+            - ../../:/home/chubbycoon/app
+        links:
+            - database
+            - mail
