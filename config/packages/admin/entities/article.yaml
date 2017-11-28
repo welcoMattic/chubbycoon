@@ -5,6 +5,13 @@ easy_admin:
             list:
                 fields:
                     - { property: 'title' }
+                    - { property: 'slug' }
                     - { property: 'content' }
-                    - { property: 'status' }
+                    - { property: 'status', template: 'easy_admin/Article/list/status.html.twig' }
                     - { property: 'category' }
+            form:
+                fields:
+                    - { property: 'title', 'label': 'Titre' }
+                    - { property: 'content', 'label': 'Contenu' }
+                    - { property: 'status', type: 'App\Type\ArticleStatusType', 'label': 'Status' }
+                    - { property: 'category', type: 'App\Type\ArticleCategoryType', 'label': 'Catégorie' }

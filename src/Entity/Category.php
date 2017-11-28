@@ -42,7 +42,7 @@ class Category
         return $this->name;
     }
 
-    public function setName(string $name): Article
+    public function setName(string $name): Category
     {
         $this->name = $name;
         return $this;

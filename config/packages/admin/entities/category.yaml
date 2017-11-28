@@ -5,3 +5,6 @@ easy_admin:
             list:
                 fields:
                     - { property: 'name' }
+            form:
+                fields:
+                    - { property: 'name', 'label': 'Nom' }

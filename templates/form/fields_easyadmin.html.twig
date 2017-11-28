@@ -1,0 +1,23 @@
+{% extends '@EasyAdmin/form/bootstrap_3_layout.html.twig' %}
+
+{% trans_default_domain "admin" %}
+
+{% block file_preview_widget %}
+    <div class="row">
+        <div class="col-sm-3">
+            {% if form.parent.vars.value is not null %}
+                {% set path = attribute(form.parent.vars.value, form.vars.path_key) %}
+            {% endif %}
+
+            {% if path is defined and path %}
+                <img class="img-thumbnail" src="{{ path }}" />
+                <label><input class="js-clear-image" type="checkbox"> {{ 'action.delete'|trans }}</label>
+            {% else %}
+                <span class="label label-info">{{ 'cms.form.label.no_image'|trans }}</span>
+            {% endif %}
+        </div>
+        <div class="col-sm-9">
+            {{ block('form_widget') }}<br>
+        </div>
+    </div>
+{% endblock file_preview_widget %}

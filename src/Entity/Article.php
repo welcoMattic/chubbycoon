@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use App\Enum\ArticleStatus;
+use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -9,6 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Article
 {
+    use ORMBehaviors\Sluggable\Sluggable;
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -22,6 +26,11 @@ class Article
     private $title;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $slug;
+
+    /**
      * @ORM\Column(type="text", nullable=false)
      */
     private $content;
@@ -29,18 +38,23 @@ class Article
     /**
      * @ORM\Column(type="string", length=255, nullable=false)
      */
-    private $slug;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=false)
-     */
-    private $status;
+    private $status = ArticleStatus::UNPUBLISHED;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="articles")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
     private $category;
+
+    /**
+     * Not used, see generateSlug.
+     *
+     * @return array
+     */
+    public function getSluggableFields()
+    {
+        return ['title'];
+    }
 
     public function getId(): ?int
     {
