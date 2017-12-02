@@ -16,7 +16,6 @@ class ArticleStatusType extends AbstractType
                 'non publié' => ArticleStatus::UNPUBLISHED,
                 'publié' => ArticleStatus::PUBLISHED,
             ],
-            'translation_domain' => 'admin',
         ]);
     }
 

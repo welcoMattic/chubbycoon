@@ -14,7 +14,6 @@ class ArticleCategoryType extends AbstractType
         $resolver->setDefaults([
             'class' => Category::class,
             'choice_label' => 'name',
-            'translation_domain' => 'admin',
         ]);
     }
 

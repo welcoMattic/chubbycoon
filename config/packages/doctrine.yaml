@@ -27,4 +27,5 @@ doctrine:
                 alias: App
 
 knp_doctrine_behaviors:
+    timestampable: true
     sluggable: true

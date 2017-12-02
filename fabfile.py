@@ -45,8 +45,8 @@ def logs():
 def install():
     """Install frontend application (composer, yarn, assets)"""
     docker_compose_run('composer install', 'builder', 'chubbycoon')
-#     docker_compose_run('yarn install --force', 'builder', 'chubbycoon')
-#     docker_compose_run('yarn dev', 'builder', no_deps=True)
+    docker_compose_run('yarn install --force', 'builder', 'chubbycoon')
+    docker_compose_run('yarn dev', 'builder', no_deps=True)
 
 
 @task
@@ -58,13 +58,13 @@ def update():
 @task
 def webpack_watch():
     """ webpack frontend watcher"""
-#     docker_compose_run('yarn watch', 'builder', no_deps=True)
+    docker_compose_run('yarn watch', 'builder', no_deps=True)
 
 
 @task
 def webpack_prod():
     """ frontend package for production"""
-#     docker_compose_run('yarn prod', 'builder', no_deps=True)
+    docker_compose_run('yarn build', 'builder', no_deps=True)
 
 
 @task
@@ -79,14 +79,14 @@ def cs_fix(dry_run=False):
 @task
 def cache_clear():
     """Clear cache of the frontend application"""
-    docker_compose_run('rm -rf var/cache/', 'builder', 'chubbycoon', no_deps=True)
+    docker_compose_run('rm -rf var/cache/', 'builder', 'root', no_deps=True)
 
 
 @task
 def update_schema():
     """Update database schema"""
     docker_compose_run('php bin/console doctrine:database:create --if-not-exists', 'builder', 'chubbycoon', no_deps=True)
-    docker_compose_run('php bin/console doctrine:migrations:migrate --no-interaction', 'builder', 'chubbycoon', no_deps=True)
+    docker_compose_run('php bin/console doctrine:schema:update --force --dump-sql', 'builder', 'chubbycoon', no_deps=True)
 
 
 @task
@@ -100,8 +100,7 @@ def fixtures():
     """Import fixtures into database"""
     docker_compose_run('php bin/console doctrine:database:drop --force', 'builder', 'chubbycoon', no_deps=True)
     update_schema()
-    docker_compose_run('php bin/console app:fixtures:load', 'builder', 'chubbycoon', no_deps=True)
-
+    print('TODO');
 
 @task
 def ssh():

@@ -26,14 +26,20 @@ class Category
      */
     private $articles;
 
+    public function __toString(): string
+    {
+        return $this->name;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function setId(int $id): Category
+    public function setId(int $id): self
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -42,9 +48,10 @@ class Category
         return $this->name;
     }
 
-    public function setName(string $name): Category
+    public function setName(string $name): self
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -53,9 +60,10 @@ class Category
         return $this->articles;
     }
 
-    public function setArticles(array $articles): Category
+    public function setArticles(array $articles): self
     {
         $this->articles = $articles;
+
         return $this;
     }
 }

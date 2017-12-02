@@ -20,7 +20,7 @@ services:
         depends_on:
             - base-php
         volumes:
-            - ../../:/var/www
+            - ../../:/var/www:cached
         links:
             - database
             - mail
@@ -42,7 +42,7 @@ services:
         depends_on:
             - base-php
         volumes:
-            - ../../:/home/chubbycoon/app
+            - ../../:/home/chubbycoon/app:cached
         links:
             - database
             - mail

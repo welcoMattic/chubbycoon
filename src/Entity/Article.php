@@ -3,15 +3,21 @@
 namespace App\Entity;
 
 use App\Enum\ArticleStatus;
-use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 use Doctrine\ORM\Mapping as ORM;
+use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ArticleRepository")
  */
 class Article
 {
-    use ORMBehaviors\Sluggable\Sluggable;
+    use ORMBehaviors\Sluggable\Sluggable,
+        ORMBehaviors\Timestampable\Timestampable;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $slug;
 
     /**
      * @ORM\Id
@@ -26,12 +32,7 @@ class Article
     private $title;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    protected $slug;
-
-    /**
-     * @ORM\Column(type="text", nullable=false)
+     * @ORM\Column(type="text", nullable=true)
      */
     private $content;
 
@@ -46,12 +47,12 @@ class Article
      */
     private $category;
 
-    /**
-     * Not used, see generateSlug.
-     *
-     * @return array
-     */
-    public function getSluggableFields()
+    public function __toString(): string
+    {
+        return $this->title;
+    }
+
+    public function getSluggableFields(): array
     {
         return ['title'];
     }
@@ -61,9 +62,10 @@ class Article
         return $this->id;
     }
 
-    public function setId(int $id): Article
+    public function setId(int $id): self
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -72,9 +74,10 @@ class Article
         return $this->title;
     }
 
-    public function setTitle(string $title): Article
+    public function setTitle(string $title): self
     {
         $this->title = $title;
+
         return $this;
     }
 
@@ -83,9 +86,10 @@ class Article
         return $this->content;
     }
 
-    public function setContent(string $content): Article
+    public function setContent(string $content): self
     {
         $this->content = $content;
+
         return $this;
     }
 
@@ -94,9 +98,10 @@ class Article
         return $this->slug;
     }
 
-    public function setSlug(string $slug): Article
+    public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
         return $this;
     }
 
@@ -105,9 +110,10 @@ class Article
         return $this->status;
     }
 
-    public function setStatus(string $status): Article
+    public function setStatus(string $status): self
     {
         $this->status = $status;
+
         return $this;
     }
 
@@ -116,14 +122,10 @@ class Article
         return $this->category;
     }
 
-    public function setCategory(Category $category): Article
+    public function setCategory(Category $category): self
     {
         $this->category = $category;
-        return $this;
-    }
 
-    public function __toString(): string
-    {
-        return $this->title;
+        return $this;
     }
 }

@@ -2,9 +2,14 @@ easy_admin:
     site_name: 'Chubbycoon'
     disabled_actions: ['show']
     design:
-        brand_color: '#10ADED'
+        brand_color: '#205081'
         color_scheme: 'dark'
         form_theme: 'form/fields_easyadmin.html.twig'
+        assets:
+            css:
+                - 'build/css/admin.css'
+            js:
+                - 'build/js/admin.js'
     formats:
         date: 'd/m/Y'
         time: 'H:i'

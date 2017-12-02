@@ -1,7 +1,15 @@
-
 ###> symfony/framework-bundle ###
 .env
 /public/bundles/
 /var/
 /vendor/
+yarn-error.log
 ###< symfony/framework-bundle ###
+
+###> symfony/webpack-encore-pack ###
+/node_modules/
+###< symfony/webpack-encore-pack ###
+
+###> friendsofphp/php-cs-fixer ###
+.php_cs.cache
+###< friendsofphp/php-cs-fixer ###
