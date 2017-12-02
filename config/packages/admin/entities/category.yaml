@@ -1,0 +1,19 @@
+easy_admin:
+    entities:
+        Category:
+            class: App\Entity\Category
+            list:
+                title: 'Toutes les catégories'
+                actions:
+                    - { name: 'search', label: 'Rechercher une catégorie', 'icon': 'search' }
+                    - { name: 'new', label: 'Créer une catégorie', 'icon': 'plus' }
+                    - { name: 'edit', label: 'Modifier', 'icon': 'pencil' }
+                fields:
+                    - { property: 'name' }
+            new:
+                title:  'Créer une catégorie'
+            edit:
+                title:  'Modifier une catégorie'
+            form:
+                fields:
+                    - { property: 'name', 'label': 'Nom' }

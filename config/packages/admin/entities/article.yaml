@@ -1,0 +1,27 @@
+easy_admin:
+    entities:
+        Article:
+            class: App\Entity\Article
+            list:
+                title: 'Tous les articles'
+                actions:
+                - { name: 'search', label: 'Rechercher un article', 'icon': 'search' }
+                - { name: 'new', label: 'Créer un article', 'icon': 'plus' }
+                - { name: 'edit', label: 'Éditer', 'icon': 'pencil' }
+                fields:
+                    - { property: 'title', 'label': 'Titre' }
+                    - { property: 'createdAt', 'label': 'Date de création' }
+                    - { property: 'status', 'label': 'Statut', template: 'easy_admin/Article/list/status.html.twig' }
+                    - { property: 'category', 'label': 'Catégorie' }
+            new:
+                title:  'Écrire un article'
+            edit:
+                title:  'Éditer un article'
+            form:
+                fields:
+                    - { type: 'group', css_class: 'col-sm-6', icon: 'pencil', label: 'Principal' }
+                    - { property: 'title', 'label': 'Titre' }
+                    - { property: 'content', 'label': 'Contenu', 'css_class': 'editor-container' }
+                    - { type: 'group', css_class: 'col-sm-6', icon: 'cubes', label: 'Métadonnées' }
+                    - { property: 'status', 'label': 'Status', type: 'App\Type\ArticleStatusType' }
+                    - { property: 'category', 'label': 'Catégorie', type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Category' } }

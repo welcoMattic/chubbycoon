@@ -1,0 +1,7 @@
+{% trans_default_domain 'admin' %}
+
+{% if item.status is constant('App\\Enum\\ArticleStatus::UNPUBLISHED') %}
+    <span class="label label-warning">Non publié</span>
+{% elseif item.status is constant('App\\Enum\\ArticleStatus::PUBLISHED') %}
+    <span class="label label-success">Publié</span>
+{% endif %}

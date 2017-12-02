@@ -1,0 +1,37 @@
+easy_admin:
+    entities:
+        Admin:
+            class: App\Entity\Admin
+            list:
+                title: 'Administrateurs'
+                actions:
+                    - { name: 'new', label: 'Ajouter un administrateur', 'icon': 'plus' }
+                    - { name: 'edit', label: 'Modifier', 'icon': 'pencil' }
+                fields:
+                    - { property: 'firstName', 'label': 'Prénom' }
+                    - { property: 'lastName', 'label': 'Nom' }
+                    - { property: 'email', 'label': 'Email' }
+                    - { property: 'enabled', 'label': 'Status', type: 'toggle' }
+                    - { property: 'roles', 'label': 'Rôles', type: 'array' }
+            new:
+                title: 'Ajouter un administrateur'
+                fields:
+                    - { property: 'plainPassword', type_options: { required: true} }
+            edit:
+                title: 'Modifier un administrateur'
+                fields:
+                    - { property: 'plainPassword', type_options: { required: false} }
+            form: &userFormFields
+                fields:
+                    - { property: 'firstName', 'label': 'Prénom' }
+                    - { property: 'lastName', 'label': 'Nom' }
+                    - { property: 'email', 'label': 'Email' }
+                    - { property: 'plainPassword', type: 'password' }
+                    -   property: roles
+                        label: 'Rôles'
+                        type: choice
+                        type_options:
+                            expanded: true
+                            multiple: true
+                            choices:
+                                Admin: ROLE_ADMIN
