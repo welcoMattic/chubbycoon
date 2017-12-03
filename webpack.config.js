@@ -7,7 +7,6 @@ Encore
     .setPublicPath('/build')
     .cleanupOutputBeforeBuild()
     .enableSourceMaps(!Encore.isProduction())
-    // uncomment to create hashed filenames (e.g. app.abc123.css)
     .enableVersioning(Encore.isProduction())
 
     .configureBabel(function(babelConfig) {
@@ -19,11 +18,9 @@ Encore
         // babelConfig.plugins = ['styled-jsx/babel'];
     })
 
-    // uncomment to define the assets of the project
     .addEntry('js/admin', './assets/js/admin.js')
     .addStyleEntry('css/admin', './assets/css/admin.scss')
 
-    // uncomment if you use Sass/SCSS files
     .enableSassLoader()
 ;
 
