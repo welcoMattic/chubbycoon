@@ -40,7 +40,7 @@
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
             "assets:install --symlink --relative %PUBLIC_DIR%": "symfony-cmd",
-            "php bin/console doctrine:schema:update --force --dump-sql": "symfony-cmd"
+            "doctrine:schema:update --force --dump-sql": "symfony-cmd"
         },
         "post-install-cmd": [
             "@auto-scripts"
