@@ -19,4 +19,4 @@ monolog:
             channels: ["!event", "!doctrine", "!console"]
         clever_logs:
             type: error_log
-            level: warning
+            level: error
