@@ -23,7 +23,7 @@ security:
                 default_target_path: easyadmin
             logout:
                 path: admin_logout
-                target: /
+                target: home
     access_control:
         - { path: ^/admin/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin, roles: ROLE_ADMIN }
