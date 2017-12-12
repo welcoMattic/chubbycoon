@@ -13,6 +13,7 @@ COPY nginx/nginx.conf /etc/nginx/nginx.conf
 COPY php-fpm/fpm.conf /etc/php7/php-fpm.conf
 
 RUN chown -R chubbycoon:chubbycoon /var/lib/nginx
+RUN chown -R chubbycoon:chubbycoon /var/tmp/nginx
 
 EXPOSE 80
 

@@ -5,4 +5,7 @@ easy_admin:
             - { entity: 'Admin', icon: 'users', label: 'Administrateurs' }
             - { entity: 'Article', icon: 'newspaper-o', label: 'Articles' }
             - { entity: 'Category', icon: 'th-list', label: 'Catégories' }
+            - label: Media Explorer
+              route: admin_media_explorer
+              icon: picture-o
             - label: 'Env: %env(APP_ENV)%'
