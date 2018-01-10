@@ -3,6 +3,7 @@
     "license": "proprietary",
     "require": {
         "php": "^7.1.3",
+        "doctrine/doctrine-fixtures-bundle": "^3.0",
         "doctrine/doctrine-migrations-bundle": "^1.3",
         "friendsofphp/php-cs-fixer": "^2.8",
         "javiereguiluz/easyadmin-bundle": "dev-master",

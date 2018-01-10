@@ -8,7 +8,7 @@
     {% set routeName = 'admin_media_explorer' %}
 
     {% if breadcrumb|length > 1 %}
-        <ol class="breadcrumb {% if app.request.xmlHttpRequest %}breadcrumb-ajax{% endif %}" {% if not app.request.xmlHttpRequest %}style="margin-bottom: 0"{% endif %}>
+        <ol class="breadcrumb {{ app.request.xmlHttpRequest ? 'breadcrumb-ajax' : '' }}" {{ not app.request.xmlHttpRequest ? 'style="margin-bottom: 0"' : '' }}>
             {% for element in breadcrumb %}
                 <li><a href="{{ element.url }}">{{ element.name }}</a></li>
             {% endfor %}
@@ -20,7 +20,10 @@
             {% if breadcrumb|length > 1 %}
                 <form method="POST" action="{{ path(routeName, { path: currentPath }) }}" enctype="multipart/form-data">
                     <div class="input-group">
-                        {{ form_widget(formUpload.file, { attr: { class: 'form-control'} }) }}
+                        <div class="form-control">
+                            {{ form_label(formUpload.file, 'Choisir un fichier', {label_attr: {class: 'btn btn-xs', id: 'upload_file_label'}}) }}
+                            {{ form_widget(formUpload.file, {attr: {style: 'display:none;'}}) }}
+                        </div>
                         {{ form_rest(formUpload) }}
                         <span class="input-group-btn">
                             <button class="btn btn-primary" type="submit"><i class="fa fa-cloud-upload"></i> Envoyer le fichier dans le dossier courant</button>
@@ -69,7 +72,7 @@
             <div class="row">
                 {% for media in medias %}
                     <div class="{{ thumbnailClass }}">
-                        <div class="thumbnail" style="height: 175px; text-align: center; padding: 20px;">
+                        <div class="thumbnail" style="height: 225px; text-align: center; padding: 20px;">
                             {% set typeOfFile = null %}
                             {% if media.extension == 'pdf' %}
                                 {% set typeOfFile = 'pdf' %}
@@ -97,9 +100,14 @@
                                 <small>
                                     {{ media.basename }}
                                     {% if downloadLink is defined %}
-                                        <a href="{{ downloadLink }}" target="_blank">
-                                            <i class="fa fa-external-link" aria-hidden="true"></i>
-                                        </a>
+                                        <div class="input-group">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-primary clipboard-btn" data-clipboard-target="#link_{{ loop.index }}">
+                                                    <i class="fa fa-copy"></i>
+                                                </button>
+                                            </span>
+                                            <input type="text" value="{{ downloadLink }}" id="link_{{ loop.index }}" readonly class="form-control">
+                                        </div>
                                     {% endif %}
                                 </small>
                                 <br>

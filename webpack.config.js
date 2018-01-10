@@ -22,6 +22,7 @@ Encore
     .addStyleEntry('css/admin', './assets/css/admin.scss')
 
     .enableSassLoader()
+    .autoProvidejQuery()
 ;
 
 module.exports = Encore.getWebpackConfig();

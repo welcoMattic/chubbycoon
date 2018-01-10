@@ -4,10 +4,7 @@ easy_admin:
             class: App\Entity\Category
             list:
                 title: 'Toutes les catégories'
-                actions:
-                    - { name: 'search', label: 'Rechercher une catégorie', 'icon': 'search' }
-                    - { name: 'new', label: 'Créer une catégorie', 'icon': 'plus' }
-                    - { name: 'edit', label: 'Modifier', 'icon': 'pencil' }
+                actions: ['-show']
                 fields:
                     - { property: 'name' }
             new:

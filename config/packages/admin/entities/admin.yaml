@@ -4,9 +4,6 @@ easy_admin:
             class: App\Entity\Admin
             list:
                 title: 'Administrateurs'
-                actions:
-                    - { name: 'new', label: 'Ajouter un administrateur', 'icon': 'plus' }
-                    - { name: 'edit', label: 'Modifier', 'icon': 'pencil' }
                 fields:
                     - { property: 'firstName', 'label': 'Prénom' }
                     - { property: 'lastName', 'label': 'Nom' }

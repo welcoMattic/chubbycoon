@@ -5,9 +5,7 @@ easy_admin:
             list:
                 title: 'Tous les articles'
                 actions:
-                - { name: 'search', label: 'Rechercher un article', 'icon': 'search' }
-                - { name: 'new', label: 'Créer un article', 'icon': 'plus' }
-                - { name: 'edit', label: 'Éditer', 'icon': 'pencil' }
+                    - { name: 'show', label: 'Voir', 'icon': 'eye' }
                 fields:
                     - { property: 'title', 'label': 'Titre' }
                     - { property: 'createdAt', 'label': 'Date de création' }

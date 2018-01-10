@@ -1,1 +1,0 @@
-FROM djfarrelly/maildev:latest
