@@ -28,7 +28,7 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
-    App\Controller\Admin\MediaController:
+    App\Controller\MediaController:
         $kernelProjectDir: '%kernel.project_dir%'
 
     App\DataFixtures\:
