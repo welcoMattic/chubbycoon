@@ -27,12 +27,19 @@ class MediaController extends Controller
 {
     use UploadTrait;
 
+    protected $kernelProjectDir;
+
+    public function __construct(string $kernelProjectDir)
+    {
+        $this->kernelProjectDir = $kernelProjectDir;
+    }
+
     /**
      * @Route("/explore{path}", name="admin_media_explorer", requirements={"path"=".+"})
      */
     public function exploreAction(Request $request, string $path = '')
     {
-        $mediaManagerRoot = getenv('MEDIA_PATH');
+        $mediaManagerRoot = $this->kernelProjectDir . '/' . getenv('MEDIA_PATH');
 
         $finder = (new Finder())->depth('== 0')->in($mediaManagerRoot . $path);
 

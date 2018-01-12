@@ -28,6 +28,9 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
+    App\Controller\Admin\MediaController:
+        $kernelProjectDir: '%kernel.project_dir%'
+
     App\DataFixtures\:
         resource: '../src/DataFixtures'
         tags: ['doctrine.fixture.orm']
