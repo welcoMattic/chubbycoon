@@ -4,49 +4,65 @@
     {{ include('@EasyAdmin/default/flash_messages.html.twig') }}
 {% endblock flash_messages %}
 
+{% block content_title %}Media Explorer{% endblock %}
+
 {% block main %}
     {% set routeName = 'admin_media_explorer' %}
 
-    {% if breadcrumb|length > 1 %}
-        <ol class="breadcrumb {{ app.request.xmlHttpRequest ? 'breadcrumb-ajax' : '' }}" {{ not app.request.xmlHttpRequest ? 'style="margin-bottom: 0"' : '' }}>
-            {% for element in breadcrumb %}
-                <li><a href="{{ element.url }}">{{ element.name }}</a></li>
-            {% endfor %}
-        </ol>
-    {% endif %}
-
-    <div class="row">
-        <div class="col-sm-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">
             {% if breadcrumb|length > 1 %}
-                <form method="POST" action="{{ path(routeName, { path: currentPath }) }}" enctype="multipart/form-data">
-                    <div class="input-group">
-                        <div class="form-control">
-                            {{ form_label(formUpload.file, 'Choisir un fichier', {label_attr: {class: 'btn btn-xs', id: 'upload_file_label'}}) }}
-                            {{ form_widget(formUpload.file, {attr: {style: 'display:none;'}}) }}
-                        </div>
-                        {{ form_rest(formUpload) }}
-                        <span class="input-group-btn">
-                            <button class="btn btn-primary" type="submit"><i class="fa fa-cloud-upload"></i> Envoyer le fichier dans le dossier courant</button>
-                        </span>
-                    </div>
-                    <div class="text-danger">
-                        {{ form_errors(formUpload.file) }}
-                    </div>
-                </form>
+                <ul class="breadcrumb {{ app.request.xmlHttpRequest ? 'breadcrumb-ajax' : '' }}"
+                    {{ not app.request.xmlHttpRequest ? 'style="margin: 0"' : '' }}>
+                    {% for element in breadcrumb %}
+                        <li {{ loop.last ? 'class="active"' : '' }} style="margin-bottom: 0;">
+                            {% if loop.last %}
+                                {{ element.name }}
+                            {% else %}
+                                <a href="{{ element.url }}">{{ element.name }}</a>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
             {% else %}
-                <div class="text-danger">
-                    Vous devez sélectionner un dossier pour pouvoir envoyer de nouveaux fichiers.
-                </div>
+                <span>/</span>
             {% endif %}
         </div>
-    </div>
-    <br>
 
-    {% set thumbnailClass = 'col-sm-3' %}
-
-    <div class="panel panel-default">
-        <div class="panel-heading"><strong>Media</strong></div>
         <ul class="list-group" style="margin: 0">
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <form method="POST" action="{{ path(routeName, { path: currentPath }) }}" enctype="multipart/form-data">
+                            <div class="input-group">
+                                <div class="form-control">
+                                    {{ form_label(formUpload.file, '> Choisir un fichier ...', {label_attr: {class: 'btn btn-info btn-xs'}}) }}
+                                    {{ form_widget(formUpload.file, {attr: {style: 'display:none;'}}) }}
+                                </div>
+                                {{ form_rest(formUpload) }}
+                                <span class="input-group-btn">
+                                    <button class="btn btn-primary" type="submit"><i class="fa fa-cloud-upload"></i> Envoyer le fichier dans le dossier courant</button>
+                                </span>
+                            </div>
+                            <div class="text-danger">
+                                {{ form_errors(formUpload.file) }}
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-sm-6">
+                        <form method="POST" action="{{ path(routeName, { path: currentPath }) }}">
+                            <div class="input-group">
+                                {{ form_errors(formFolder.folderName) }}
+                                {{ form_widget(formFolder.folderName, {attr: {class: 'form-control'}}) }}
+                                {{ form_rest(formFolder) }}
+                                <span class="input-group-btn">
+                                    <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Créer un dossier</button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </li>
             {% for directory in directories %}
                 <li class="list-group-item">
                     <a href="{{ path(routeName, { path: currentPath ~ '/' ~ directory.basename }) }}">
@@ -54,25 +70,14 @@
                     </a>
                 </li>
             {% endfor %}
-            <li class="list-group-item">
-                <form method="POST" action="{{ path(routeName, { path: currentPath }) }}">
-                    <div class="input-group">
-                        {{ form_errors(formFolder.folderName) }}
-                        {{ form_widget(formFolder.folderName, { attr: { class: 'form-control', placeholder: 'Nom du dossier'} }) }}
-                        {{ form_rest(formFolder) }}
-                        <span class="input-group-btn">
-                    <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Créer le dossier</button>
-                </span>
-                    </div>
-                </form>
-            </li>
         </ul>
 
+        {% set thumbnailClass = 'col-sm-3' %}
         <div class="panel-body data-manager-thumbnail">
             <div class="row">
                 {% for media in medias %}
                     <div class="{{ thumbnailClass }}">
-                        <div class="thumbnail" style="height: 225px; text-align: center; padding: 20px;">
+                        <div class="thumbnail text-center">
                             {% set typeOfFile = null %}
                             {% if media.extension == 'pdf' %}
                                 {% set typeOfFile = 'pdf' %}
@@ -87,31 +92,25 @@
                             {% set relativePath = currentPath|trim('/') ~ '/' ~ media.basename %}
 
                             {% if typeOfFile %}
-                                <i class="fa fa-file-{{ typeOfFile }}-o" style="font-size: 60px" aria-hidden="true"></i>
-                                {% set downloadLink = path('download_show', { path: currentPath ~ '/' ~ media.basename } ) %}
-                                {% set link = downloadLink|replace({'/app_dev.php': '', '/app.php': ''}) %}
-                                <input type="text" style="width: 100%; margin-top: 5px;" readonly="readonly" value="{{ link }}" data-relative-path="/{{ relativePath }}" />
+                                {% set link = path('download_show', {path: currentPath ~ '/' ~ media.basename})|replace({'/app_dev.php': '', '/app.php': ''}) %}
+                                <i class="fa fa-file-{{ typeOfFile }}-o" style="font-size: 90px" aria-hidden="true"></i>
                             {% else %}
-                                {% set downloadLink = path('home')~'uploads/'~relativePath %}
-                                <img data-relative-path="{{ relativePath }}" src="{{ downloadLink }}" width="90px" />
+                                {% set link = path('home')~'uploads/'~relativePath %}
+                                <img data-relative-path="{{ relativePath }}" src="{{ link }}" width="90px" />
                             {% endif %}
 
                             <div class="caption">
-                                <small>
-                                    {{ media.basename }}
-                                    {% if downloadLink is defined %}
-                                        <div class="input-group">
-                                            <span class="input-group-btn">
-                                                <button class="btn btn-primary clipboard-btn" data-clipboard-target="#link_{{ loop.index }}">
-                                                    <i class="fa fa-copy"></i>
-                                                </button>
-                                            </span>
-                                            <input type="text" value="{{ downloadLink }}" id="link_{{ loop.index }}" readonly class="form-control">
-                                        </div>
-                                    {% endif %}
-                                </small>
-                                <br>
-                                <small>{{ media.mTime|localizeddate('short', 'short') }}</small>
+                                <p class="input-group">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-primary clipboard-btn" data-clipboard-target="#link_{{ loop.index }}">
+                                            <i class="fa fa-copy"></i>
+                                        </button>
+                                    </span>
+                                    <input type="text" value="{{ link }}" id="link_{{ loop.index }}" readonly class="form-control">
+                                </p>
+                                <p>
+                                    <span class="label label-primary">{{ media.mTime|localizeddate('short', 'short') }}</span>
+                                </p>
                             </div>
                         </div>
                     </div>

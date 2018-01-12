@@ -83,7 +83,7 @@ class MediaController extends Controller
         $previousPath = '';
         $breadcrumb[] = [
             'url' => $router->generate($routeName),
-            'name' => 'Media manager',
+            'name' => 'Media Explorer',
         ];
         foreach (explode('/', $folderName) as $part) {
             if (empty($part)) {

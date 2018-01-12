@@ -17,5 +17,5 @@ easy_admin:
         actions:
             - { name: 'search', label: 'Rechercher', 'icon': 'search' }
             - { name: 'new', label: 'Créer', 'icon': 'plus' }
-            - { name: 'edit', label: 'Éditer', 'icon': 'pencil' }
+            - { name: 'edit', label: 'Modifier', 'icon': 'pencil' }
             - { name: 'delete', label: 'Supprimer', 'icon': 'trash-o' }
