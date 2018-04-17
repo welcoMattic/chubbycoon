@@ -1,27 +1,32 @@
-var Encore = require('@symfony/webpack-encore');
+const Encore = require('@symfony/webpack-encore');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 Encore
-    // the project directory where compiled assets will be stored
     .setOutputPath('public/build/')
-    // the public path used by the web server to access the previous directory
     .setPublicPath('/build')
     .cleanupOutputBeforeBuild()
-    .enableSourceMaps(!Encore.isProduction())
+
     .enableVersioning(Encore.isProduction())
-
-    .configureBabel(function(babelConfig) {
-        // add additional presets
-        babelConfig.presets.push('es2015-without-strict');
-        babelConfig.presets.push('stage-1');
-
-        // no plugins are added by default, but you can add some
-        // babelConfig.plugins = ['styled-jsx/babel'];
-    })
+    .enableSourceMaps(!Encore.isProduction())
+    .enableBuildNotifications()
 
     .addEntry('js/admin', './assets/js/admin.js')
-    .addStyleEntry('css/admin', './assets/css/admin.scss')
+    .addEntry('js/app', './assets/js/app.js')
+    .configureBabel(function(babelConfig) {
+        babelConfig.presets.push('es2015');
+    })
 
-    .enableSassLoader()
+    .addStyleEntry('css/admin', './assets/css/admin.scss')
+    .addStyleEntry('css/app', './assets/css/app.scss')
+    .enableSassLoader(function(sassOptions) {}, {
+        resolveUrlLoader: false,
+    })
+
+    .addPlugin(new CopyWebpackPlugin([{
+        from: './assets/images',
+        to: 'images',
+    }]))
+
     .autoProvidejQuery()
 ;
 

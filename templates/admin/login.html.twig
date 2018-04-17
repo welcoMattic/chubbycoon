@@ -1,6 +1,6 @@
 {% extends '@EasyAdmin/default/layout.html.twig' %}
 
-{% block page_title %}{{ 'login.heading'|trans({}, 'admin') }}{% endblock %}
+{% block page_title %}Restricted Area{% endblock %}
 
 {% block head_stylesheets %}
     {{ parent() }}
@@ -11,7 +11,7 @@
     <body class="hold-transition login-page">
         <div class="login-box">
             <div class="login-box-body">
-                <p class="login-box-msg">{{ 'login.heading'|trans({}, 'admin') }}</p>
+                <h2 class="login-box-msg">Restricted Area</h2>
                 <form action="{{ path('admin_login_check') }}" method="post">
                     <div class="form-group has-feedback {% if error %} has-error {% endif %} ">
                         {% if error %}<label class="control-label"><i class="fa fa-times-circle-o"></i> {{ error.messageKey|trans(error.messageData, 'security') }}</label>{% endif %}
@@ -26,7 +26,7 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-4 col-xs-offset-4">
-                            <button type="submit" name="_submit" class="btn btn-primary btn-flat">{{ 'login.button'|trans({}, 'admin') }}</button>
+                            <button type="submit" name="_submit" class="btn btn-primary btn-flat">Connexion</button>
                         </div>
                     </div>
                 </form>

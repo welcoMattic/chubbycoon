@@ -1,0 +1,22 @@
+<div class="container-fluid p-0">
+    <header>
+        <div class="jumbotron rounded-0 mb-0"
+             style="background: url({{ asset('build/images/cover.jpg') }}) no-repeat center right fixed;">
+            <div class="col-md-12 px-0 py-5 text-center" style="text-shadow: 1px 2px 3px rgba(0,0,0,0.3);">
+                <a href="{{ path('home') }}" class="nav-link text-dark">
+                    <h1 class="display-4">Simon Gosselin</h1>
+                    <h3 class="lead my-3">Réalisateur | Cadreur | Monteur | Auteur</h3>
+                </a>
+            </div>
+        </div>
+    </header>
+    <div class="nav-scroller py-1 mb-5 bg-dark">
+        <div class="container p-0">
+            <nav class="nav d-flex justify-content-start">
+                <a href="{{ path('article_list') }}" class="pr-5 py-2 text-white">Mes réalisations</a>
+                <a href="http://wlcmtc.info/cv-simon-gosselin.pdf" class="px-5 py-2 text-white">Mon CV</a>
+                <a href="#" class="pl-5 py-2 text-white">Mes photos</a>
+            </nav>
+        </div>
+    </div>
+</div>

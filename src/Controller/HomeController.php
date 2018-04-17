@@ -19,7 +19,7 @@ class HomeController extends Controller
     {
         $articles = $em->getRepository(Article::class)->findBy([
             'status' => ArticleStatus::PUBLISHED,
-        ]);
+        ], null, 3);
 
         return $this->render('home.html.twig', [
             'articles' => $articles

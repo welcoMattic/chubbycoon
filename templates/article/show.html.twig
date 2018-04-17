@@ -1,5 +1,22 @@
-<h1>{{ article.title }}</h1>
+{% extends 'base.html.twig' %}
 
-<date>{{ article.createdAt|localizeddate('long', 'short') }}</date>
+{% block body %}
+    {{ include('_header.html.twig') }}
 
-<p>{{ article.content|raw }}</p>
+    <div class="container px-0">
+        <div class="row mb-3">
+            <div class="col-sm-8">
+                <h2 class="mb-5">
+                    {{ article.title }}
+                    <span class="badge badge-light">{{ article.category.name }}</span>
+                </h2>
+                <p>
+                    {{ article.content|raw }}
+                </p>
+            </div>
+            <div class="col-sm-4">
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
