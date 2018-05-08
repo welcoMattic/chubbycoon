@@ -39,7 +39,7 @@ class MediaController extends Controller
      */
     public function exploreAction(Request $request, string $path = '')
     {
-        $mediaManagerRoot = $this->kernelProjectDir . '/' . getenv('MEDIA_PATH');
+        $mediaManagerRoot = getenv('MEDIA_PATH');
 
         $finder = (new Finder())->depth('== 0')->in($mediaManagerRoot . $path);
 
@@ -73,6 +73,7 @@ class MediaController extends Controller
         }
 
         return $this->render('admin/media_explorer.html.twig', [
+            'ckeditor' => $request->query->has('CKEditor'),
             'directories' => $finder->directories()->getIterator(),
             'medias' => $finder->files()->getIterator(),
             'currentPath' => $path,

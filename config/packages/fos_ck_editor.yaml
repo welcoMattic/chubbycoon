@@ -1,0 +1,7 @@
+fos_ck_editor:
+    default_config: article_config
+    configs:
+        article_config:
+            toolbar: "standard"
+            filebrowserImageBrowseRoute: "admin_media_explorer"
+            filebrowserImageUploadRoute: "admin_media_explorer"

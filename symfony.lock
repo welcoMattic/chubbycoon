@@ -92,6 +92,9 @@
             "ref": "9d60c231a92e69c68b89897813ec4931d0697b1f"
         }
     },
+    "friendsofsymfony/ckeditor-bundle": {
+        "version": "1.0.0"
+    },
     "gecko-packages/gecko-php-unit": {
         "version": "v3.0"
     },

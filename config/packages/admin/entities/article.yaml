@@ -19,7 +19,7 @@ easy_admin:
                 fields:
                     - { type: 'group', css_class: 'col-sm-6', icon: 'pencil', label: 'Principal' }
                     - { property: 'title', 'label': 'Titre' }
-                    - { property: 'content', 'label': 'Contenu', 'css_class': 'editor-container' }
+                    - { property: 'content', 'label': 'Contenu', type: 'FOS\CKEditorBundle\Form\Type\CKEditorType' }
                     - { type: 'group', css_class: 'col-sm-6', icon: 'cubes', label: 'Métadonnées' }
                     - { property: 'status', 'label': 'Status', type: 'App\Type\ArticleStatusType' }
                     - { property: 'category', 'label': 'Catégorie', type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Category' } }
