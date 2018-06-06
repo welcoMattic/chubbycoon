@@ -14,12 +14,12 @@ easy_admin:
             new:
                 title:  'Écrire un article'
             edit:
-                title:  'Éditer un article'
+                title:  'Modifier un article'
             form:
                 fields:
-                    - { type: 'group', css_class: 'col-sm-6', icon: 'pencil', label: 'Principal' }
+                    - { type: 'group', css_class: 'col-md-9', icon: 'pencil', label: 'Contenu' }
                     - { property: 'title', 'label': 'Titre' }
                     - { property: 'content', 'label': 'Contenu', type: 'FOS\CKEditorBundle\Form\Type\CKEditorType' }
-                    - { type: 'group', css_class: 'col-sm-6', icon: 'cubes', label: 'Métadonnées' }
+                    - { type: 'group', css_class: 'col-md-3', icon: 'gear', label: 'Métadonnées' }
                     - { property: 'status', 'label': 'Status', type: 'App\Type\ArticleStatusType' }
-                    - { property: 'category', 'label': 'Catégorie', type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Category' } }
+                    - { property: 'category', 'label': 'Catégorie', type: 'entity', type_options: { class: 'App\Entity\Category' } }

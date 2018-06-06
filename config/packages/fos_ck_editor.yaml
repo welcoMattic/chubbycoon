@@ -2,6 +2,18 @@ fos_ck_editor:
     default_config: article_config
     configs:
         article_config:
-            toolbar: "standard"
-            filebrowserImageBrowseRoute: "admin_media_explorer"
-            filebrowserImageUploadRoute: "admin_media_explorer"
+            toolbar:
+                - ['Styles', 'Format']
+                - ['Bold', 'Italic', 'Strike', '-', 'RemoveFormat']
+                - ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']
+                - ['PasteFromWord']
+                - ['Link', 'Unlink']
+                - ['Image', 'Embed']
+                - ['Table', 'HorizontalRule', '-', 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote']
+                - ['Undo', 'Redo']
+                - ['Source']
+            filebrowserImageBrowseRoute: 'admin_media_explorer'
+            height: 400px
+            removePlugins: 'elementspath'
+            extraPlugins: 'embedbase,embed,embedsemantic'
+            embed_provider: '//ckeditor.iframe.ly/api/oembed?url={url}&callback={callback}'
