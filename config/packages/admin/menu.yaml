@@ -4,5 +4,5 @@ easy_admin:
             - label: 'Administration'
             - { entity: 'Admin', icon: 'users', label: 'Administrateurs' }
             - { entity: 'Article', icon: 'newspaper-o', label: 'Articles' }
-            - { entity: 'Category', icon: 'th-list', label: 'Catégories' }
+            - { entity: 'Category', icon: 'tags', label: 'Catégories' }
             - { route: 'admin_media_explorer', icon: 'picture-o', label: 'Media Explorer' }

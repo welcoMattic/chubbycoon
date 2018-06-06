@@ -1,5 +1,8 @@
-@import '~quill/dist/quill.snow';
+.media-explorer-media {
+    padding: 2px;
+    margin: 10px;
+}
 
-.js-quill {
-  height: 375px;
+.media-explorer-media:hover {
+    outline: 2px solid #205081;
 }

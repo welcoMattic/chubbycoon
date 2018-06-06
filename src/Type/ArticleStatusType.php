@@ -13,9 +13,10 @@ class ArticleStatusType extends AbstractType
     {
         $resolver->setDefaults([
             'choices' => [
-                'non publié' => ArticleStatus::UNPUBLISHED,
-                'publié' => ArticleStatus::PUBLISHED,
+                'Non publié' => ArticleStatus::UNPUBLISHED,
+                'Publié' => ArticleStatus::PUBLISHED,
             ],
+            'expanded' => true,
         ]);
     }
 

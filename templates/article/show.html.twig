@@ -14,9 +14,18 @@
                     {{ article.content|raw }}
                 </p>
             </div>
-            <div class="col-sm-4">
-
+            <div class="col-sm-3 offset-sm-1">
+                <h3>Articles similaires</h3>
+                <ul class="list-unstyled">
+                    {% for relatedArticle in relatedArticles %}
+                        <li>
+                            <a href="{{ path('article_show', { id: relatedArticle.id }) }}">{{ relatedArticle.title }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
     </div>
+
+    {{ include('_footer.html.twig') }}
 {% endblock %}

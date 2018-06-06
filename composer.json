@@ -7,6 +7,7 @@
         "doctrine/doctrine-migrations-bundle": "^1.3",
         "easycorp/easyadmin-bundle": "^1.17",
         "friendsofphp/php-cs-fixer": "^2.8",
+        "friendsofsymfony/ckeditor-bundle": "^1.0",
         "knplabs/doctrine-behaviors": "^1.5",
         "myclabs/php-enum": "^1.5",
         "symfony/console": "^4.0",
@@ -17,6 +18,7 @@
         "symfony/monolog-bundle": "^3.1",
         "symfony/profiler-pack": "^1.0",
         "symfony/security-bundle": "^4.0",
+        "symfony/swiftmailer-bundle": "^3.2",
         "symfony/webpack-encore-pack": "^1.0",
         "symfony/yaml": "^4.0",
         "twig/extensions": "^1.5"
@@ -25,6 +27,8 @@
         "symfony/dotenv": "^4.0",
         "symfony/web-server-bundle": "^4.0"
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "config": {
         "preferred-install": {
             "*": "dist"
@@ -45,7 +49,7 @@
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
             "assets:install --symlink --relative %PUBLIC_DIR%": "symfony-cmd",
-            "doctrine:schema:update --force --dump-sql": "symfony-cmd"
+            "ckeditor:install": "symfony-cmd"
         },
         "post-install-cmd": [
             "@auto-scripts"

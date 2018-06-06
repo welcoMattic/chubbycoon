@@ -29,10 +29,13 @@ class ArticleController extends Controller
     /**
      * @Route("/article/{id}", name="article_show")
      */
-    public function show(Article $article): Response
+    public function show(Article $article, ArticleRepository $articleRepository): Response
     {
+        $relatedArticles = $articleRepository->findRelatedArticles($article->getCategory());
+
         return $this->render('article/show.html.twig', [
             'article' => $article,
+            'relatedArticles' => $relatedArticles,
         ]);
     }
 }

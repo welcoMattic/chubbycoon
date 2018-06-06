@@ -1,8 +1,16 @@
-{% extends app.request.xmlHttpRequest ? 'admin/xhr_media_explorer_layout.html.twig' : '@EasyAdmin/default/layout.html.twig' %}
+{% extends '@EasyAdmin/default/layout.html.twig' %}
 
-{% block flash_messages %}
-    {{ include('@EasyAdmin/default/flash_messages.html.twig') }}
-{% endblock flash_messages %}
+{% block body_class %}
+    {% if ckeditor %}
+        sidebar-collapse
+    {% endif %}
+{% endblock %}
+
+{% block header %}
+    {% if not ckeditor %}
+        {{ parent() }}
+    {% endif %}
+{% endblock header %}
 
 {% block content_title %}Media Explorer{% endblock %}
 
@@ -36,8 +44,7 @@
                         <form method="POST" action="{{ path(routeName, { path: currentPath }) }}" enctype="multipart/form-data">
                             <div class="input-group">
                                 <div class="form-control">
-                                    {{ form_label(formUpload.file, '> Choisir un fichier ...', {label_attr: {class: 'btn btn-info btn-xs'}}) }}
-                                    {{ form_widget(formUpload.file, {attr: {style: 'display:none;'}}) }}
+                                    {{ form_widget(formUpload.file) }}
                                 </div>
                                 {{ form_rest(formUpload) }}
                                 <span class="input-group-btn">
@@ -65,7 +72,7 @@
             </li>
             {% for directory in directories %}
                 <li class="list-group-item">
-                    <a href="{{ path(routeName, { path: currentPath ~ '/' ~ directory.basename }) }}">
+                    <a href="{{ path(routeName, app.request.query.all|merge({ path: currentPath ~ '/' ~ directory.basename })) }}">
                         <i class="fa fa-folder"></i> {{ directory.basename }}
                     </a>
                 </li>
@@ -93,25 +100,36 @@
 
                             {% if typeOfFile %}
                                 {% set link = path('download_show', {path: currentPath ~ '/' ~ media.basename})|replace({'/app_dev.php': '', '/app.php': ''}) %}
-                                <i class="fa fa-file-{{ typeOfFile }}-o" style="font-size: 90px" aria-hidden="true"></i>
+                                <i class="fa fa-file-{{ typeOfFile }}-o media-explorer-media"
+                                   style="font-size: 90px;{{ ckeditor ? ' cursor: pointer;' }}"
+                                   aria-hidden="true"
+                                   {% if ckeditor %}
+                                       onclick="window.opener.CKEDITOR.tools.callFunction({{ app.request.query.get('CKEditorFuncNum') }}, '{{ link }}'); window.close()"
+                                   {% endif %}
+                                ></i>
                             {% else %}
                                 {% set link = path('home')~'uploads/'~relativePath %}
-                                <img data-relative-path="{{ relativePath }}" src="{{ link }}" width="90px" />
+                                <img data-relative-path="{{ relativePath }}" class="media-explorer-media"
+                                     src="{{ link }}" width="90px"
+                                     style="{{ ckeditor ? ' cursor: pointer;' }}"
+                                     {% if ckeditor %}
+                                         onclick="window.opener.CKEDITOR.tools.callFunction({{ app.request.query.get('CKEditorFuncNum') }}, '{{ link }}'); window.close();"
+                                     {% endif %}
+                                />
                             {% endif %}
 
-                            <div class="caption">
-                                <p class="input-group">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-primary clipboard-btn" data-clipboard-target="#link_{{ loop.index }}">
-                                            <i class="fa fa-copy"></i>
-                                        </button>
-                                    </span>
-                                    <input type="text" value="{{ link }}" id="link_{{ loop.index }}" readonly class="form-control">
-                                </p>
-                                <p>
-                                    <span class="label label-primary">{{ media.mTime|localizeddate('short', 'short') }}</span>
-                                </p>
-                            </div>
+                            {% if not ckeditor %}
+                                <div class="caption">
+                                    <p class="input-group">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-primary clipboard-btn" data-clipboard-target="#link_{{ loop.index }}">
+                                                <i class="fa fa-copy"></i>
+                                            </button>
+                                        </span>
+                                        <input type="text" value="{{ link }}" id="link_{{ loop.index }}" readonly class="form-control">
+                                    </p>
+                                </div>
+                            {% endif %}
                         </div>
                     </div>
                 {% else %}
