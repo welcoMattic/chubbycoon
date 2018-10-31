@@ -5,9 +5,9 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Enum\ArticleStatus;
 use App\Repository\ArticleRepository;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
 class ArticleController extends Controller
 {

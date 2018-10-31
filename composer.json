@@ -10,6 +10,7 @@
         "friendsofsymfony/ckeditor-bundle": "^1.0",
         "knplabs/doctrine-behaviors": "^1.5",
         "myclabs/php-enum": "^1.5",
+        "sensio/framework-extra-bundle": "^5.2",
         "symfony/console": "^4.0",
         "symfony/expression-language": "^4.0",
         "symfony/flex": "^1.0",
