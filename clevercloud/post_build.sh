@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
+./bin/console doctrine:migrations:migrate -n
+
 npm install
 npm run build
-
-./bin/console doc:mig:mig -n
