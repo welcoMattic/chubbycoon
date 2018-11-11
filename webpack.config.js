@@ -11,9 +11,6 @@ Encore
 
     .addEntry('js/admin', './assets/js/admin.js')
     .addEntry('js/app', './assets/js/app.js')
-    .configureBabel(function(babelConfig) {
-        babelConfig.presets.push('es2015');
-    })
 
     .addStyleEntry('css/admin', './assets/css/admin.scss')
     .addStyleEntry('css/app', './assets/css/app.scss')
@@ -27,6 +24,7 @@ Encore
     })
 
     .autoProvidejQuery()
+    .enableSingleRuntimeChunk()
 ;
 
 module.exports = Encore.getWebpackConfig();

@@ -17,3 +17,13 @@ fos_ck_editor:
             removePlugins: 'elementspath'
             extraPlugins: 'embedbase,embed,embedsemantic'
             embed_provider: '//ckeditor.iframe.ly/api/oembed?url={url}&callback={callback}'
+    plugins:
+        embedbase:
+            path: "/ckeditor/plugins/embedbase/"
+            filename: "plugin.js"
+        embed:
+            path: "/ckeditor/plugins/embed/"
+            filename: "plugin.js"
+        embedsemantic:
+            path: "/ckeditor/plugins/embedsemantic/"
+            filename: "plugin.js"
