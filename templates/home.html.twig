@@ -55,7 +55,9 @@
                         <div class="card-body">
                             <h5 class="card-title">
                                 <a href="{{ path('article_show', { id: article.id }) }}">{{ article.title }}</a>
-                                <span class="badge badge-light">{{ article.category.name }}</span>
+                                {% for category in article.categories %}
+                                    <span class="badge badge-light">{{ category.name }}</span>
+                                {% endfor %}
                             </h5>
                             <p class="card-text">{{ article.content[:100] ~ '...' }}</p>
                             <a href="{{ path('article_show', { id: article.id }) }}">

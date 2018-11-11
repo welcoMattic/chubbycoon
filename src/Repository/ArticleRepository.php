@@ -17,8 +17,9 @@ class ArticleRepository extends ServiceEntityRepository
     public function findRelatedArticles(Category $category): array
     {
         $qb = $this->createQueryBuilder('a')
-            ->andWhere('a.category = :category')
-            ->setParameter('category', $category)
+            ->leftJoin('a.categories', 'c')
+            ->andWhere('c.name = :category_name')
+            ->setParameter('category_name', $category->getName())
             ->setMaxResults('5')
         ;
 

@@ -5,10 +5,19 @@
 
     <div class="container px-0">
         <div class="row mb-3">
+            <div class="col-sm-12">
+                <a href="{{ path('article_list') }}">
+                    <i class="fa fa-arrow-left"></i>&nbsp;Retour à la liste des articles
+                </a>
+            </div>
+        </div>
+        <div class="row mb-3">
             <div class="col-sm-8">
                 <h2 class="mb-5">
                     {{ article.title }}
-                    <span class="badge badge-light">{{ article.category.name }}</span>
+                    {% for category in article.categories %}
+                        <span class="badge badge-light">{{ category.name }}</span>
+                    {% endfor %}
                 </h2>
                 <p>
                     {{ article.content|raw }}
@@ -19,7 +28,9 @@
                 <ul class="list-unstyled">
                     {% for relatedArticle in relatedArticles %}
                         <li>
-                            <a href="{{ path('article_show', { id: relatedArticle.id }) }}">{{ relatedArticle.title }}</a>
+                            <a href="{{ path('article_show', { id: relatedArticle.id }) }}">
+                                <i class="fa fa-tag"></i>&nbsp;{{ relatedArticle.title }}
+                            </a>
                         </li>
                     {% endfor %}
                 </ul>

@@ -31,7 +31,7 @@ class ArticleController extends Controller
      */
     public function show(Article $article, ArticleRepository $articleRepository): Response
     {
-        $relatedArticles = $articleRepository->findRelatedArticles($article->getCategory());
+        $relatedArticles = $articleRepository->findRelatedArticles($article->getCategories()->first());
 
         return $this->render('article/show.html.twig', [
             'article' => $article,
