@@ -5,7 +5,6 @@ echo ">>> POST BUILD SCRIPT"
 echo ""
 
 ./bin/console doctrine:migrations:migrate -n
-./bin/console doctrine:fixtures:load -n
 ./bin/console ckeditor:install -n --no-progress-bar
 ./bin/console assets:install public
 

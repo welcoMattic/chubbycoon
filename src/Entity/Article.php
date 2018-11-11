@@ -48,6 +48,11 @@ class Article
      */
     private $categories;
 
+    /**
+     * @ORM\Column(type="string", length=191, nullable=true)
+     */
+    private $thumbnail;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
@@ -145,6 +150,18 @@ class Article
         if ($this->categories->contains($category)) {
             $this->categories->removeElement($category);
         }
+
+        return $this;
+    }
+
+    public function getThumbnail(): ?string
+    {
+        return $this->thumbnail;
+    }
+
+    public function setThumbnail(?string $thumbnail): self
+    {
+        $this->thumbnail = $thumbnail;
 
         return $this;
     }

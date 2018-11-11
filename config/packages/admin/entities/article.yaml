@@ -19,6 +19,7 @@ easy_admin:
                 fields:
                     - { type: 'group', css_class: 'col-md-8', icon: 'pencil', label: 'Contenu' }
                     - { property: 'title', 'label': 'Titre' }
+                    - { property: 'thumbnail', 'label': 'Miniature' }
                     - { property: 'content', 'label': 'Contenu', type: 'FOS\CKEditorBundle\Form\Type\CKEditorType' }
                     - { type: 'group', css_class: 'col-md-4', icon: 'gear', label: 'Métadonnées' }
                     - { property: 'createdAt', 'label': 'Date de création', type: 'date', type_options: { 'widget': 'single_text' } }
