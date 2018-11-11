@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+echo ""
+echo ">>> PRE BUILD SCRIPT"
+echo ""
+
 mkdir -p public/build/css
 mkdir -p public/build/js
 mkdir -p public/build/images
