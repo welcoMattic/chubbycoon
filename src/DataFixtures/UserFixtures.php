@@ -22,7 +22,7 @@ class UserFixtures extends Fixture
         $admin1->setFirstName('Mathieu');
         $admin1->setLastName('Santostefano');
 
-        $password = $this->encoder->encodePassword($admin1, 'wBuscvijTk8Y');
+        $password = $this->encoder->encodePassword($admin1, 'LesJouetsCestLaVie42');
         $admin1->setPassword($password);
 
         $admin1->setEnabled(true);
@@ -35,11 +35,11 @@ class UserFixtures extends Fixture
         $admin2->setFirstName('Simon');
         $admin2->setLastName('Gosselin');
 
-        $password = $this->encoder->encodePassword($admin2, 'uaNz9VvceVYL');
+        $password = $this->encoder->encodePassword($admin2, 'LesJouetsCestLaVie42');
         $admin2->setPassword($password);
 
         $admin2->setEnabled(true);
-        $admin2->setEmail('simon.gosselin@gmail.com');
+        $admin2->setEmail('simon.gosselin14@gmail.com');
         $admin2->setRoles(['ROLE_ADMIN']);
         $this->addReference('user-simon', $admin2);
         $manager->persist($admin2);
