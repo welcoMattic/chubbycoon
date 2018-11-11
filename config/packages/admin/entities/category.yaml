@@ -7,6 +7,7 @@ easy_admin:
                 actions: ['-show']
                 fields:
                     - { property: 'name' }
+                    - { property: 'articles' }
             new:
                 title:  'Créer une catégorie'
             edit:

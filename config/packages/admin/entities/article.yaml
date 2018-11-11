@@ -10,16 +10,17 @@ easy_admin:
                     - { property: 'title', 'label': 'Titre' }
                     - { property: 'createdAt', 'label': 'Date de création' }
                     - { property: 'status', 'label': 'Statut', template: 'easy_admin/Article/list/status.html.twig' }
-                    - { property: 'category', 'label': 'Catégorie' }
+                    - { property: 'categories', 'label': 'Catégories' }
             new:
                 title:  'Écrire un article'
             edit:
                 title:  'Modifier un article'
             form:
                 fields:
-                    - { type: 'group', css_class: 'col-md-9', icon: 'pencil', label: 'Contenu' }
+                    - { type: 'group', css_class: 'col-md-8', icon: 'pencil', label: 'Contenu' }
                     - { property: 'title', 'label': 'Titre' }
                     - { property: 'content', 'label': 'Contenu', type: 'FOS\CKEditorBundle\Form\Type\CKEditorType' }
-                    - { type: 'group', css_class: 'col-md-3', icon: 'gear', label: 'Métadonnées' }
-                    - { property: 'status', 'label': 'Status', type: 'App\Type\ArticleStatusType' }
-                    - { property: 'category', 'label': 'Catégorie', type: 'entity', type_options: { class: 'App\Entity\Category' } }
+                    - { type: 'group', css_class: 'col-md-4', icon: 'gear', label: 'Métadonnées' }
+                    - { property: 'createdAt', 'label': 'Date de création', type: 'date', type_options: { 'widget': 'single_text' } }
+                    - { property: 'status', 'label': 'Statut', type: 'App\Type\ArticleStatusType' }
+                    - { property: 'categories', 'label': 'Catégories', type: 'entity', type_options: { class: 'App\Entity\Category' } }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Enum\ArticleStatus;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
@@ -42,10 +44,14 @@ class Article
     private $status = ArticleStatus::UNPUBLISHED;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="articles")
-     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Category", inversedBy="articles")
      */
-    private $category;
+    private $categories;
+
+    public function __construct()
+    {
+        $this->categories = new ArrayCollection();
+    }
 
     public function __toString(): string
     {
@@ -117,14 +123,28 @@ class Article
         return $this;
     }
 
-    public function getCategory(): ?Category
+    /**
+     * @return Collection|Category[]
+     */
+    public function getCategories(): Collection
     {
-        return $this->category;
+        return $this->categories;
     }
 
-    public function setCategory(Category $category): self
+    public function addCategory(Category $category): self
     {
-        $this->category = $category;
+        if (!$this->categories->contains($category)) {
+            $this->categories[] = $category;
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Category $category): self
+    {
+        if ($this->categories->contains($category)) {
+            $this->categories->removeElement($category);
+        }
 
         return $this;
     }
