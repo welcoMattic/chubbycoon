@@ -2,6 +2,8 @@
 .env
 /public/bundles/
 /public/build/
+/public/uploads/*
+!/public/uploads/.gitkeep
 /var/
 /vendor/
 yarn-error.log
