@@ -1,11 +1,5 @@
-# Infrastructure
-start:
-	fab start
-	@make -s confirm-up
-
-stop:
-	fab stop
-
-confirm-up:
-	@echo "=============== Stack is up and ready ================="
-	@echo "Application is accessible at http://chubbycoon.dev/"
+db:
+	./bin/console doctrine:database:drop --force --if-exists
+	./bin/console doctrine:database:create --if-not-exists
+	./bin/console doctrine:migrations:migrate -n
+	./bin/console doctrine:fixtures:load -n
