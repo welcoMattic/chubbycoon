@@ -1,5 +1,4 @@
 const Encore = require('@symfony/webpack-encore');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 Encore
     .setOutputPath('public/build/')
@@ -8,7 +7,7 @@ Encore
 
     .enableVersioning(Encore.isProduction())
     .enableSourceMaps(!Encore.isProduction())
-    .enableBuildNotifications()
+    .enableBuildNotifications(!Encore.isProduction())
 
     .addEntry('js/admin', './assets/js/admin.js')
     .addEntry('js/app', './assets/js/app.js')
@@ -22,10 +21,10 @@ Encore
         resolveUrlLoader: false,
     })
 
-    .addPlugin(new CopyWebpackPlugin([{
+    .copyFiles({
         from: './assets/images',
-        to: 'images',
-    }]))
+        to: 'images/[path][name].[ext]',
+    })
 
     .autoProvidejQuery()
 ;
